@@ -45,7 +45,7 @@ import chardet
 import warnings
 from .exceptions import RequestsDependencyWarning
 
-
+# shellbye_day01 启动时检查urllib3和chardet的兼容性
 def check_compatibility(urllib3_version, chardet_version):
     urllib3_version = urllib3_version.split('.')
     assert urllib3_version != ['dev']  # Verify urllib3 isn't installed from git.
@@ -81,6 +81,9 @@ except (AssertionError, ValueError):
 
 # Attempt to enable urllib3's SNI support, if possible
 try:
+    # shellbye_day01 这里尝试加载pyopenssl，
+    # 如果需要，得安装pip install pyopenssl
+    # 但是看样子这里是可有可无
     from urllib3.contrib import pyopenssl
     pyopenssl.inject_into_urllib3()
 except ImportError:
@@ -88,12 +91,15 @@ except ImportError:
 
 # urllib3's DependencyWarnings should be silenced.
 from urllib3.exceptions import DependencyWarning
+# shellbye_day01 https://docs.python.org/2/library/warnings.html
 warnings.simplefilter('ignore', DependencyWarning)
 
+# shellbye_day01 引入当前目录里的module的变量
 from .__version__ import __title__, __description__, __url__, __version__
 from .__version__ import __build__, __author__, __author_email__, __license__
 from .__version__ import __copyright__, __cake__
 
+# shellbye_day01 引入当前目录里的module
 from . import utils
 from . import packages
 from .models import Request, Response, PreparedRequest
