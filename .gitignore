@@ -1,23 +1,5 @@
-.coverage
-MANIFEST
-coverage.xml
-nosetests.xml
-junit-report.xml
-pylint.txt
-toy.py
-.cache/
-cover/
-build/
-docs/_build
-requests.egg-info/
-*.pyc
-*.swp
-*.egg
-env/
 
-.workon
+.idea/
+.DS_Store
+.svn/
 
-t.py
-
-t2.py
-dist
